@@ -4,16 +4,21 @@
   "scripts": {
     "eslint:check": "eslint --ext .cjs,.mjs,.ts,.tsx .",
     "eslint:fix": "eslint --ext .cjs,.mjs,.ts,.tsx --fix .",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --passWithNoTests --watch",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write ."
   },
   "devDependencies": {
+    "@jest/globals": "^29.5.0",
     "@tailwindcss/forms": "^0.5.3",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "esbuild": "^0.18.8",
+    "esbuild-jest": "^0.5.0",
     "eslint": "^8.43.0",
     "eslint-config-prettier": "^8.8.0",
+    "jest": "^29.5.0",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwindcss": "^3.3.2"

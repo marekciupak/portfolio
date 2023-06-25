@@ -71,3 +71,7 @@ jobs:
 
       - name: "Elixir: run tests"
         run: mix test
+
+      - name: "Node: run tests"
+        run: npm test
+        working-directory: ./assets
