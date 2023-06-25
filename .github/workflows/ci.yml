@@ -65,5 +65,9 @@ jobs:
         run: npm run eslint:check
         working-directory: ./assets
 
+      - name: "Node: check formatting (Prettier)"
+        run: npm run prettier:check
+        working-directory: ./assets
+
       - name: "Elixir: run tests"
         run: mix test
