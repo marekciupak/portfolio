@@ -6,12 +6,25 @@ Portfolio allows you to track the performance of your investment portfolio.
 
 ## Development
 
-To start Phoenix server:
+### Requirements
 
-- Run `mix setup` to install and setup dependencies
-- Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+- PostgreSQL
+- Runtimes listed in [.tool-versions](.tool-versions)
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+### Setup
+
+1. Run `mix setup` to install and setup dependencies.
+
+2. Run linters and tests with:
+
+   ```shell
+   mix format
+   mix test
+   ```
+
+3. Start Phoenix endpoint with `mix phx.server` (or inside IEx with `iex -S mix phx.server`).
+
+4. Visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Copyright
 
