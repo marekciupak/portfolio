@@ -18,11 +18,11 @@ Portfolio allows you to track the performance of your investment portfolio.
 2. Run linters and tests with:
 
    ```shell
-   mix format
-   (cd assets && npm run eslint:check)
-   (cd assets && npm run prettier:check)
-   mix test
-   (cd assets && npm test)
+   mix format --check-formatted \
+      && (cd assets && npm run eslint:check) \
+      && (cd assets && npm run prettier:check) \
+      && mix test \
+      && (cd assets && npm test)
    ```
 
 3. Start Phoenix endpoint with `mix phx.server` (or inside IEx with `iex -S mix phx.server`).
