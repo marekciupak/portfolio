@@ -24,7 +24,9 @@ config :portfolio, PortfolioWeb.Endpoint,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "AS0wnPM3xj9iD53AxZlv4ZgL3gGgoQBsuJigWtTWNa8fX2y5aPBanVui4GaQ2U52",
-  watchers: []
+  watchers: [
+    node: ["build.mjs", "--watch", cd: Path.expand("../assets", __DIR__)]
+  ]
 
 # ## SSL Support
 #
