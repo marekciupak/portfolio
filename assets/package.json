@@ -1,0 +1,13 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "scripts": {
+    "eslint:check": "eslint --ext .cjs,.mjs,.ts,.tsx .",
+    "eslint:fix": "eslint --ext .cjs,.mjs,.ts,.tsx --fix ."
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "eslint": "^8.43.0"
+  }
+}
