@@ -1,1 +1,1 @@
-console.debug("Hello World!");
+import "./index.tsx";
