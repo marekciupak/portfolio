@@ -25,7 +25,15 @@ config :portfolio, PortfolioWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "AS0wnPM3xj9iD53AxZlv4ZgL3gGgoQBsuJigWtTWNa8fX2y5aPBanVui4GaQ2U52",
   watchers: [
-    node: ["build.mjs", "--watch", cd: Path.expand("../assets", __DIR__)]
+    node: ["build.mjs", "--watch", cd: Path.expand("../assets", __DIR__)],
+    node: [
+      "node_modules/.bin/tailwindcss",
+      "--config=tailwind.config.cjs",
+      "--input=css/app.css",
+      "--output=../priv/static/assets/app.css",
+      "--watch",
+      cd: "assets"
+    ]
   ]
 
 # ## SSL Support

@@ -61,8 +61,15 @@ defmodule Portfolio.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["cmd --cd assets npm install"],
-      "assets.build": ["cmd --cd assets node build.mjs"],
-      "assets.deploy": ["cmd --cd assets node build.mjs --deploy", "phx.digest"]
+      "assets.build": [
+        "cmd --cd assets node node_modules/.bin/tailwindcss --config=tailwind.config.cjs --input=css/app.css --output=../priv/static/assets/app.css",
+        "cmd --cd assets node build.mjs"
+      ],
+      "assets.deploy": [
+        "cmd --cd assets node node_modules/.bin/tailwindcss --config=tailwind.config.cjs --input=css/app.css --output=../priv/static/assets/app.css --minify",
+        "cmd --cd assets node build.mjs --deploy",
+        "phx.digest"
+      ]
     ]
   end
 end
