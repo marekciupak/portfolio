@@ -7,7 +7,7 @@ permissions:
 
 jobs:
   linters_and_tests:
-    name: Ensure the code is formatted and tests are passing
+    name: Linters and tests
     runs-on: ubuntu-latest
     services:
       postgres:
