@@ -19,6 +19,8 @@ Portfolio allows you to track the performance of your investment portfolio.
 
    ```shell
    mix format
+   (cd assets && npm run eslint:check)
+   (cd assets && npm run prettier:check)
    mix test
    ```
 
