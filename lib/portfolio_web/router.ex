@@ -20,10 +20,13 @@ defmodule PortfolioWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PortfolioWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", PortfolioWeb.API, as: :api do
+    pipe_through :api
+
+    scope "/v1", V1, as: :v1 do
+      resources "/currencies", CurrencyController, only: [:index], param: "code"
+    end
+  end
 
   # Enable LiveDashboard in development
   if Application.compile_env(:portfolio, :dev_routes) do
