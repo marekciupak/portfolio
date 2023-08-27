@@ -1,6 +1,6 @@
 import React from "react";
-import Currencies from "./features/currencies/Currencies";
+import {Outlet} from "react-router-dom";
 
-const Root = () => <Currencies />;
+const Root = () => <Outlet />;
 
 export default Root;

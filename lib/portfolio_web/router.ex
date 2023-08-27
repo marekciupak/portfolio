@@ -14,12 +14,6 @@ defmodule PortfolioWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", PortfolioWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   scope "/api", PortfolioWeb.API, as: :api do
     pipe_through :api
 
@@ -42,5 +36,11 @@ defmodule PortfolioWeb.Router do
 
       live_dashboard "/dashboard", metrics: PortfolioWeb.Telemetry
     end
+  end
+
+  scope "/", PortfolioWeb do
+    pipe_through :browser
+
+    get "/*page", PageController, :index
   end
 end
