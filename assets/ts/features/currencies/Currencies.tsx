@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import {Link} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {fetchCurrencies, selectAllCurrencies} from "./currenciesSlice";
 
@@ -15,7 +16,9 @@ const Currencies = () => {
       <h1>Currencies</h1>
       <ul>
         {currencies.map((currency) => (
-          <li key={currency.code}>{currency.code}</li>
+          <li key={currency.code}>
+            <Link to={currency.code}>{currency.code}</Link>
+          </li>
         ))}
       </ul>
     </React.Fragment>
