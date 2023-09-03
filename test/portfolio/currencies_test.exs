@@ -11,6 +11,11 @@ defmodule Portfolio.CurrenciesTest do
       assert Currencies.list_currencies() == [currency]
     end
 
+    test "get_currency!/1 returns the currency with given code" do
+      currency = currency_fixture()
+      assert Currencies.get_currency!(currency.code).code == currency.code
+    end
+
     test "create_currency!/1 with valid data creates a currency" do
       valid_attrs = %{code: "PLN"}
 

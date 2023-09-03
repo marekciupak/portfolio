@@ -9,4 +9,9 @@ defmodule PortfolioWeb.API.V1.CurrencyController do
     currencies = Currencies.list_currencies()
     render(conn, :index, currencies: currencies)
   end
+
+  def show(conn, %{"code" => code}) do
+    currency = Currencies.get_currency!(code)
+    render(conn, :show, currency: currency)
+  end
 end

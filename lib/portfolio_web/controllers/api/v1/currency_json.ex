@@ -12,4 +12,15 @@ defmodule PortfolioWeb.API.V1.CurrencyJSON do
         end)
     }
   end
+
+  @doc """
+  Renders a single currency.
+  """
+  def show(%{currency: currency}) do
+    %{
+      data: %{
+        code: currency.code
+      }
+    }
+  end
 end

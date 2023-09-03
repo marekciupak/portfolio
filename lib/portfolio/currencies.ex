@@ -22,6 +22,25 @@ defmodule Portfolio.Currencies do
   end
 
   @doc """
+  Gets a single currency.
+
+  Raises `Ecto.NoResultsError` if the Currency does not exist.
+
+  ## Examples
+
+      iex> get_currency!("USD")
+      %Currency{}
+
+      iex> get_currency!("XXX")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_currency!(code) when is_binary(code) do
+    Currency
+    |> Repo.get!(code)
+  end
+
+  @doc """
   Creates a currency.
 
   ## Examples

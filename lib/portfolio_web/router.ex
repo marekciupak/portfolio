@@ -18,7 +18,7 @@ defmodule PortfolioWeb.Router do
     pipe_through :api
 
     scope "/v1", V1, as: :v1 do
-      resources "/currencies", CurrencyController, only: [:index], param: "code"
+      resources "/currencies", CurrencyController, only: [:index, :show], param: "code"
     end
   end
 

@@ -1,6 +1,8 @@
 defmodule PortfolioWeb.API.V1.CurrencyControllerTest do
   use PortfolioWeb.ConnCase
 
+  import Portfolio.CurrenciesFixtures
+
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
@@ -10,5 +12,22 @@ defmodule PortfolioWeb.API.V1.CurrencyControllerTest do
       conn = get(conn, ~p"/api/v1/currencies")
       assert json_response(conn, 200)["data"] == []
     end
+  end
+
+  describe "show" do
+    setup [:create_currency]
+
+    test "renders currency", %{conn: conn, currency: currency} do
+      conn = get(conn, ~p"/api/v1/currencies/#{currency.code}")
+
+      assert json_response(conn, 200)["data"] == %{
+               "code" => currency.code
+             }
+    end
+  end
+
+  defp create_currency(_) do
+    currency = currency_fixture()
+    %{currency: currency}
   end
 end
