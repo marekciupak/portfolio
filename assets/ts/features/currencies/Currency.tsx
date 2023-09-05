@@ -1,8 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
+import {useAppDispatch} from "../../app/hooks";
+import {fetchCurrency} from "./currenciesSlice";
 
 const Currency = () => {
   const {code} = useParams();
+
+  if (!code) throw new Error("Currency code is not defined.");
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrency(code));
+  }, [dispatch, code]);
 
   return (
     <React.Fragment>

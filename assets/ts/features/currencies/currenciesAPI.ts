@@ -9,6 +9,10 @@ type GetCurrenciesResponse = {
   data: Currency[];
 };
 
+type GetCurrencyResponse = {
+  data: Currency;
+};
+
 class CurrenciesAPI {
   client: AxiosInstance;
 
@@ -23,6 +27,10 @@ class CurrenciesAPI {
 
   fetchCurrencies() {
     return this.client.get<GetCurrenciesResponse>("/v1/currencies");
+  }
+
+  fetchCurrency(code: Currency["code"]) {
+    return this.client.get<GetCurrencyResponse>(`/v1/currencies/${code}`);
   }
 }
 

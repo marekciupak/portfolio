@@ -12,13 +12,29 @@ export const fetchCurrencies = createAsyncThunk("currenciess/fetchCurrencies", (
     .catch((error) => rejectWithValue(error)),
 );
 
+export const fetchCurrency = createAsyncThunk(
+  "currenciess/fetchCurrency",
+  (code: Currency["code"], {rejectWithValue}) =>
+    currenciesAPI
+      .fetchCurrency(code)
+      .then((response) => response.data.data)
+      .catch((error) => rejectWithValue(error)),
+);
+
 const GENERIC_ERROR_MESSAGE = "Something went wrong.";
+
+type status = "idle" | "loading" | "succeeded" | "failed";
+type error = string | null;
+type meta = {
+  [key: Currency["code"]]: {status: status; error: error};
+};
 
 const currenciesSlice = createSlice({
   name: "currencies",
   initialState: currenciesAdapter.getInitialState({
-    status: "idle" as "idle" | "loading" | "succeeded" | "failed",
-    error: null as string | null,
+    status: "idle" as status,
+    error: null as error,
+    meta: {} as meta,
   }),
   reducers: {},
   extraReducers(builder) {
@@ -33,6 +49,20 @@ const currenciesSlice = createSlice({
       .addCase(fetchCurrencies.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || GENERIC_ERROR_MESSAGE;
+      })
+      .addCase(fetchCurrency.pending, (state, action) => {
+        state.meta[action.meta.arg] = {...state.meta[action.meta.arg], status: "loading"};
+      })
+      .addCase(fetchCurrency.fulfilled, (state, action) => {
+        state.meta[action.meta.arg] = {...state.meta[action.meta.arg], status: "succeeded"};
+        currenciesAdapter.setOne(state, action.payload);
+      })
+      .addCase(fetchCurrency.rejected, (state, action) => {
+        state.meta[action.meta.arg] = {
+          ...state.meta[action.meta.arg],
+          status: "failed",
+          error: action.error.message || GENERIC_ERROR_MESSAGE,
+        };
       });
   },
 });
