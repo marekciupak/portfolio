@@ -10,7 +10,7 @@ test("displays currency", async () => {
     <Routes>
       <Route path="/:code" element={<Currency />} />
     </Routes>,
-    {route: "/USD"}
+    {route: "/USD"},
   );
 
   expect(screen.getByText("Currency", {exact: false})).toBeTruthy();

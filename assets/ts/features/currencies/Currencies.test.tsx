@@ -9,7 +9,7 @@ import Currencies from "./Currencies";
 const server = setupServer(
   rest.get("/api/v1/currencies", (_req, res, ctx) => {
     return res(ctx.json({data: [{code: "USD"}, {code: "PLN"}]}), ctx.delay(50));
-  })
+  }),
 );
 
 beforeAll(() => server.listen());

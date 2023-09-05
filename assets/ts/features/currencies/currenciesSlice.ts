@@ -9,7 +9,7 @@ export const fetchCurrencies = createAsyncThunk("currenciess/fetchCurrencies", (
   currenciesAPI
     .fetchCurrencies()
     .then((response) => response.data.data)
-    .catch((error) => rejectWithValue(error))
+    .catch((error) => rejectWithValue(error)),
 );
 
 const GENERIC_ERROR_MESSAGE = "Something went wrong.";

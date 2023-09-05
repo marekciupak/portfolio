@@ -24,7 +24,7 @@ export const renderWithProviders = (
     store = setupStore(preloadedState),
     route = "/",
     ...renderOptions
-  }: ExtendedRenderOptions = {}
+  }: ExtendedRenderOptions = {},
 ) => {
   const Wrapper = ({children}: PropsWithChildren<NonNullable<unknown>>): JSX.Element => {
     return (

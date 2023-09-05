@@ -30,5 +30,5 @@ root.render(
     <Provider store={setupStore()}>
       <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
