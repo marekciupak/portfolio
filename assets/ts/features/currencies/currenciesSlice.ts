@@ -69,4 +69,9 @@ const currenciesSlice = createSlice({
 
 export default currenciesSlice.reducer;
 
-export const {selectAll: selectAllCurrencies} = currenciesAdapter.getSelectors((state: RootState) => state.currencies);
+export const {selectAll: selectAllCurrencies, selectById: selectCurrencyById} = currenciesAdapter.getSelectors(
+  (state: RootState) => state.currencies,
+);
+
+export const selectLoadingStatusById = (state: RootState, code: Currency["code"]) =>
+  state.currencies.meta[code] === undefined ? "idle" : state.currencies.meta[code].status;
