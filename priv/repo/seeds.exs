@@ -5,3 +5,4 @@
 alias Portfolio.Currencies
 
 Currencies.create_currencies(["PLN", "USD", "GBP", "EUR"])
+Currencies.fetch_exchange_rates()

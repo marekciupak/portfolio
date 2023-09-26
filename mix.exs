@@ -44,7 +44,9 @@ defmodule Portfolio.MixProject do
       {:telemetry_metrics, "~> 0.0"},
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:tz, "~> 0.26.0"},
+      {:httpoison, "~> 2.0"}
     ]
   end
 

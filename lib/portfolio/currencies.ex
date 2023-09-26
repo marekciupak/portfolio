@@ -6,9 +6,11 @@ defmodule Portfolio.Currencies do
   import Ecto.Query, warn: false
   alias Portfolio.Repo
 
-  alias Portfolio.Currencies.{Currency, CurrencyPair, ExchangeRate}
+  alias Portfolio.Currencies.{Currency, CurrencyPairs, CurrencyPair, ExchangeRate}
 
   @default_currency_code "PLN"
+
+  defdelegate fetch_exchange_rates, to: CurrencyPairs
 
   @doc """
   Returns the list of currencies.
