@@ -1,16 +1,22 @@
 import axios from "axios";
 import type {AxiosInstance} from "axios";
 
-export type Currency = {
-  code: string;
-};
+type Code = string;
 
 type GetCurrenciesResponse = {
-  data: Currency[];
+  data: {
+    code: Code;
+  }[];
 };
 
 type GetCurrencyResponse = {
-  data: Currency;
+  data: {
+    code: Code;
+    exchange_rates: {
+      values: [number[], string[]];
+      quote_code: "PLN";
+    }[];
+  };
 };
 
 class CurrenciesAPI {
@@ -29,7 +35,7 @@ class CurrenciesAPI {
     return this.client.get<GetCurrenciesResponse>("/v1/currencies");
   }
 
-  fetchCurrency(code: Currency["code"]) {
+  fetchCurrency(code: Code) {
     return this.client.get<GetCurrencyResponse>(`/v1/currencies/${code}`);
   }
 }

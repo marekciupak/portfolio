@@ -1,7 +1,14 @@
 import {createSlice, createEntityAdapter, createAsyncThunk} from "@reduxjs/toolkit";
 import type {RootState} from "../../app/store";
 import currenciesAPI from "./currenciesAPI";
-import type {Currency} from "./currenciesAPI";
+
+export type Currency = {
+  code: string;
+  exchange_rates?: {
+    values: [number[], string[]];
+    quote_code: "PLN";
+  }[];
+};
 
 const currenciesAdapter = createEntityAdapter<Currency>({selectId: (currency) => currency.code});
 
@@ -44,7 +51,7 @@ const currenciesSlice = createSlice({
       })
       .addCase(fetchCurrencies.fulfilled, (state, action) => {
         state.status = "succeeded";
-        currenciesAdapter.setMany(state, action.payload);
+        currenciesAdapter.upsertMany(state, action.payload);
       })
       .addCase(fetchCurrencies.rejected, (state, action) => {
         state.status = "failed";

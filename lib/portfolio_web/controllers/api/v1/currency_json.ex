@@ -19,8 +19,20 @@ defmodule PortfolioWeb.API.V1.CurrencyJSON do
   def show(%{currency: currency}) do
     %{
       data: %{
-        code: currency.code
+        code: currency.code,
+        exchange_rates:
+          Enum.map(currency.pairs, fn pair ->
+            %{
+              quote_code: pair.quote_code,
+              values: [
+                Enum.map(pair.exchange_rates, &date_to_unixtime(&1.date)),
+                Enum.map(pair.exchange_rates, & &1.mid)
+              ]
+            }
+          end)
       }
     }
   end
+
+  defp date_to_unixtime(date), do: date |> DateTime.new!(~T[00:00:00]) |> DateTime.to_unix()
 end

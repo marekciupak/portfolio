@@ -6,7 +6,9 @@ defmodule Portfolio.Currencies do
   import Ecto.Query, warn: false
   alias Portfolio.Repo
 
-  alias Portfolio.Currencies.Currency
+  alias Portfolio.Currencies.{Currency, CurrencyPair, ExchangeRate}
+
+  @default_currency_code "PLN"
 
   @doc """
   Returns the list of currencies.
@@ -22,7 +24,7 @@ defmodule Portfolio.Currencies do
   end
 
   @doc """
-  Gets a single currency.
+  Gets a single currency with exchange rates ordered by date.
 
   Raises `Ecto.NoResultsError` if the Currency does not exist.
 
@@ -38,6 +40,7 @@ defmodule Portfolio.Currencies do
   def get_currency!(code) when is_binary(code) do
     Currency
     |> Repo.get!(code)
+    |> Repo.preload(pairs: [exchange_rates: from(e in ExchangeRate, order_by: [asc: e.date])])
   end
 
   @doc """
@@ -59,18 +62,58 @@ defmodule Portfolio.Currencies do
   end
 
   @doc """
-  Creates currencies with given codes. It skips currencies that already exist (no error is returned).
+  Creates a currency pair.
+
+  ## Examples
+
+      iex> create_currency_pair!(%{field: value})
+      {:ok, %CurrencyPair{}}
+
+  """
+  def create_currency_pair!(attrs \\ %{}) do
+    %CurrencyPair{}
+    |> CurrencyPair.changeset(attrs)
+    |> Repo.insert!()
+  end
+
+  @doc """
+  Creates an exchange rate.
+
+  ## Examples
+
+      iex> create_exchange_rate!(%{field: value})
+      {:ok, %ExchangeRate{}}
+
+  """
+  def create_exchange_rate!(attrs \\ %{}) do
+    %ExchangeRate{}
+    |> ExchangeRate.changeset(attrs)
+    |> Repo.insert!()
+  end
+
+  @doc """
+  Creates currencies with given codes. For each it also creates a pair with the default currency.
+
+  It skips records that already exist (no error is returned).
 
   ## Examples
 
       iex> create_currencies(["USD", "PLN"])
-      {2, nil}
+      {:ok, {2, nil}}
 
   """
   def create_currencies(codes) when is_list(codes) do
     currencies = Enum.map(codes, fn code -> [code: code] end)
 
-    Repo.insert_all(Currency, currencies, on_conflict: :nothing)
+    pairs =
+      codes
+      |> Enum.reject(fn code -> code == @default_currency_code end)
+      |> Enum.map(fn code -> [base_code: code, quote_code: @default_currency_code] end)
+
+    Repo.transaction(fn ->
+      Repo.insert_all(Currency, currencies, on_conflict: :nothing)
+      Repo.insert_all(CurrencyPair, pairs, conflict_target: [:base_code, :quote_code], on_conflict: :nothing)
+    end)
   end
 
   @doc """
@@ -85,4 +128,9 @@ defmodule Portfolio.Currencies do
   def change_currency(%Currency{} = currency, attrs \\ %{}) do
     Currency.changeset(currency, attrs)
   end
+
+  @doc """
+  Returns a default currency code.
+  """
+  def default_currency_code, do: @default_currency_code
 end
