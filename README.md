@@ -34,8 +34,8 @@ Portfolio allows you to track the performance of your investment portfolio.
 Copyright (C) 2023 Marek Ciupak
 
 This program is free software: you can redistribute it and/or modify
-it under the terms of the version 3 of the GNU Affero General Public
-License as published by the Free Software Foundation.
+it under the terms of version 3 of the GNU Affero General Public License
+as published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
