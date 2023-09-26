@@ -45,11 +45,11 @@ defmodule Portfolio.Currencies do
 
   ## Examples
 
-      iex> create_currency(%{field: value})
+      iex> create_currency!(%{field: value})
       {:ok, %Currency{}}
 
-      iex> create_currency(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+      iex> create_currency!(%{})
+      ** (Ecto.InvalidChangesetError)
 
   """
   def create_currency!(attrs \\ %{}) do
