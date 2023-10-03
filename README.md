@@ -21,11 +21,13 @@ Portfolio allows you to track the performance of your investment portfolio.
    mix format --check-formatted \
       && (cd assets && npm run eslint:check) \
       && (cd assets && npm run prettier:check) \
+      && mix sobelow --config \
       && mix test \
       && (cd assets && npm test)
    ```
 
-3. Start Phoenix endpoint with `mix phx.server` (or inside IEx with `iex -S mix phx.server`).
+3. Start Phoenix endpoint with `PORTFOLIO_FETCH_MARKET_DATA=true mix phx.server`
+   (or inside IEx with `PORTFOLIO_FETCH_MARKET_DATA=true iex -S mix phx.server`).
 
 4. Visit [`localhost:4000`](http://localhost:4000) from your browser.
 
