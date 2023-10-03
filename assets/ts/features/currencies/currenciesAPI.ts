@@ -1,5 +1,5 @@
 import axios from "axios";
-import type {AxiosInstance} from "axios";
+import type {AxiosInstance, AxiosResponseTransformer} from "axios";
 
 type Code = string;
 
@@ -9,11 +9,21 @@ type GetCurrenciesResponse = {
   }[];
 };
 
-type GetCurrencyResponse = {
+type GetCurrencyResponseRaw = {
   data: {
     code: Code;
     exchange_rates: {
       values: [number[], string[]];
+      quote_code: "PLN";
+    }[];
+  };
+};
+
+type GetCurrencyResponse = {
+  data: {
+    code: Code;
+    exchange_rates: {
+      values: [number[], number[]];
       quote_code: "PLN";
     }[];
   };
@@ -36,7 +46,21 @@ class CurrenciesAPI {
   }
 
   fetchCurrency(code: Code) {
-    return this.client.get<GetCurrencyResponse>(`/v1/currencies/${code}`);
+    return this.client.get<GetCurrencyResponse>(`/v1/currencies/${code}`, {
+      transformResponse: [
+        ...(this.client.defaults.transformResponse as AxiosResponseTransformer[]),
+        (res: GetCurrencyResponseRaw): GetCurrencyResponse => ({
+          ...res,
+          data: {
+            ...res.data,
+            exchange_rates: res.data.exchange_rates.map((exchange_rates) => ({
+              ...exchange_rates,
+              values: [exchange_rates.values[0], exchange_rates.values[1].map((mid) => parseFloat(mid))],
+            })),
+          },
+        }),
+      ],
+    });
   }
 }
 

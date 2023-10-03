@@ -3,6 +3,7 @@ import {test, expect} from "@jest/globals";
 import {renderWithProviders} from "../../utils/test-utils";
 import {Routes, Route} from "react-router-dom";
 import {screen} from "@testing-library/react";
+import "../../utils/matchMedia.mock";
 import Currency from "./Currency";
 
 test("displays currency", async () => {

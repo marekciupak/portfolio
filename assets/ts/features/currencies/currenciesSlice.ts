@@ -5,7 +5,7 @@ import currenciesAPI from "./currenciesAPI";
 export type Currency = {
   code: string;
   exchange_rates?: {
-    values: [number[], string[]];
+    values: [number[], number[]];
     quote_code: "PLN";
   }[];
 };
