@@ -19,6 +19,7 @@ defmodule PortfolioWeb.Router do
 
     scope "/v1", V1, as: :v1 do
       resources "/currencies", CurrencyController, only: [:index, :show], param: "code"
+      resources "/assets", AssetController, only: [:index, :show], param: "symbol"
     end
   end
 
