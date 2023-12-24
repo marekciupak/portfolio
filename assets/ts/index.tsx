@@ -7,6 +7,8 @@ import Root from "./Root";
 import ErrorPage from "./ErrorPage";
 import Currencies from "./features/currencies/Currencies";
 import Currency from "./features/currencies/Currency";
+import Assets from "./features/assets/Assets";
+import Asset from "./features/assets/Asset";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Failed to find the root element.");
@@ -21,6 +23,8 @@ const router = createBrowserRouter([
       {index: true, element: <div>Hello!</div>},
       {path: "currencies", element: <Currencies />},
       {path: "currencies/:code", element: <Currency />},
+      {path: "assets", element: <Assets />},
+      {path: "assets/:symbol", element: <Asset />},
     ],
   },
 ]);

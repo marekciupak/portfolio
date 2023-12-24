@@ -1,9 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import type {PreloadedState} from "@reduxjs/toolkit";
 import currenciesReducer from "../features/currencies/currenciesSlice";
+import assetsReducer from "../features/assets/assetsSlice";
 
 const rootReducer = combineReducers({
   currencies: currenciesReducer,
+  assets: assetsReducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
