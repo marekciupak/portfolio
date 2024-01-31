@@ -1,3 +1,8 @@
+/*!
+ * Copyright (C) 2023-2024 Marek Ciupak
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";

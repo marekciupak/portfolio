@@ -1,5 +1,6 @@
 {
   "name": "portfolio",
+  "license": "AGPL-3.0-only",
   "version": "1.0.0",
   "scripts": {
     "eslint:check": "eslint --ext .cjs,.mjs,.ts,.tsx .",

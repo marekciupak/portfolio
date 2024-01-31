@@ -1,3 +1,6 @@
+# Copyright (C) 2023-2024 Marek Ciupak
+# SPDX-License-Identifier: AGPL-3.0-only
+
 defmodule PortfolioWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by

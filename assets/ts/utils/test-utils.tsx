@@ -1,3 +1,8 @@
+/*!
+ * Copyright (C) 2023-2024 Marek Ciupak
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 import React, {PropsWithChildren} from "react";
 import {render} from "@testing-library/react";
 import type {RenderOptions} from "@testing-library/react";
@@ -16,6 +21,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   route?: string;
 }
 
+// https://github.com/reduxjs/redux/blob/e312a02cbfdc021432fdf82f5d0499483391ec5f/docs/usage/WritingTests.mdx#L289
 export const renderWithProviders = (
   ui: React.ReactElement,
   {

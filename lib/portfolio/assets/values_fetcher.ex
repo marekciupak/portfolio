@@ -1,3 +1,6 @@
+# Copyright (C) 2023-2024 Marek Ciupak
+# SPDX-License-Identifier: AGPL-3.0-only
+
 defmodule Portfolio.Assets.ValuesFetcher do
   import Ecto.Query, warn: false
   alias Portfolio.Repo

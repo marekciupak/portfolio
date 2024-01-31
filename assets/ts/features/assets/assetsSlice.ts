@@ -1,3 +1,8 @@
+/*!
+ * Copyright (C) 2023-2024 Marek Ciupak
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 import {createSlice, createEntityAdapter, createAsyncThunk} from "@reduxjs/toolkit";
 import type {RootState} from "../../app/store";
 import assetsAPI from "./assetsAPI";

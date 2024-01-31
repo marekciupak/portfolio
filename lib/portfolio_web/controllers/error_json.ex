@@ -1,3 +1,6 @@
+# Copyright (C) 2023-2024 Marek Ciupak
+# SPDX-License-Identifier: AGPL-3.0-only
+
 defmodule PortfolioWeb.ErrorJSON do
   # If you want to customize a particular status code,
   # you may add your own clauses, such as:

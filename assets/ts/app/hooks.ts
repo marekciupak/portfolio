@@ -1,3 +1,8 @@
+/*!
+ * Copyright (C) 2023-2024 Marek Ciupak
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 import {useDispatch, useSelector} from "react-redux";
 import type {TypedUseSelectorHook} from "react-redux";
 import type {RootState, AppDispatch} from "./store";

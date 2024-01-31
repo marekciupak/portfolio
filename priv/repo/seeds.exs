@@ -1,3 +1,6 @@
+# Copyright (C) 2023-2024 Marek Ciupak
+# SPDX-License-Identifier: AGPL-3.0-only
+
 # Script for populating the database. You can run it as:
 #
 #     mix run priv/repo/seeds.exs

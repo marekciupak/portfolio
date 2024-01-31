@@ -1,3 +1,6 @@
+# Copyright (C) 2023-2024 Marek Ciupak
+# SPDX-License-Identifier: AGPL-3.0-only
+
 # https://hub.docker.com/r/hexpm/elixir/tags
 ARG ELIXIR_VERSION=1.16.1
 ARG OTP_VERSION=26.2.1

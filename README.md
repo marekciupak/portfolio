@@ -32,7 +32,7 @@ Portfolio allows you to track the performance of your investment portfolio.
 
 ## Copyright and license
 
-Copyright (C) 2023 Marek Ciupak
+Copyright (C) 2023-2024 Marek Ciupak
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of version 3 of the GNU Affero General Public License
