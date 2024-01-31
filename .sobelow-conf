@@ -1,1 +1,13 @@
-[verbose: false, private: true, skip: false, router: nil, exit: :low, format: "txt", out: nil, threshold: :low, ignore: ["Config.HTTPS"], ignore_files: [], version: false]
+[
+  verbose: false,
+  private: true,
+  skip: false,
+  router: nil,
+  exit: :low,
+  format: "txt",
+  out: nil,
+  threshold: :low,
+  ignore: ["Config.HTTPS"],
+  ignore_files: [],
+  version: false,
+]
