@@ -27,15 +27,13 @@ defmodule Portfolio.Currencies.CurrencyPairs do
   end
 
   defp fetch_exchange_rates(%{base_code: base_code, quote_code: "PLN", exchange_rates: exchange_rates} = pair) do
-    end_date = DateTime.now!("Europe/Warsaw") |> DateTime.to_date()
+    opts =
+      case exchange_rates do
+        [] -> []
+        [lastest_exchange_rate] -> [start_date: Date.add(lastest_exchange_rate.date, 1)]
+      end
 
-    exchange_rates
-    |> case do
-      [] -> []
-      [lastest_exchange_rate] -> [start_date: Date.add(lastest_exchange_rate.date, 1)]
-    end
-    |> Keyword.merge(currency_code: base_code, end_date: end_date)
-    |> Nbp.Client.get_exchange_rates()
+    Nbp.Client.get_exchange_rates(base_code, opts)
     |> extrapolate_to_cover_all_days()
     |> create_exchange_rates(pair)
 

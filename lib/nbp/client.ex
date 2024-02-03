@@ -8,11 +8,14 @@ defmodule Nbp.Client do
   @beginning_of_data_range ~D[2002-01-01]
   @max_days_period_per_request 367
 
-  def get_exchange_rates(currency_code: currency_code, end_date: end_date) do
-    get_exchange_rates(currency_code: currency_code, start_date: @beginning_of_data_range, end_date: end_date)
+  def get_exchange_rates(currency_code, opts \\ []) do
+    start_date = Keyword.get(opts, :start_date, @beginning_of_data_range)
+    end_date = Keyword.get(opts, :end_date, DateTime.now!("Europe/Warsaw") |> DateTime.to_date())
+
+    get_exchange_rates(currency_code, start_date, end_date)
   end
 
-  def get_exchange_rates(currency_code: currency_code, start_date: start_date, end_date: end_date) do
+  defp get_exchange_rates(currency_code, start_date, end_date) do
     split_into_smaller_ranges(start_date, end_date, @max_days_period_per_request)
     |> Enum.flat_map(fn [start_date, end_date] ->
       "http://api.nbp.pl/api/exchangerates/rates/#{@table}/#{currency_code}/#{start_date}/#{end_date}/"
